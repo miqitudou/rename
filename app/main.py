@@ -5,13 +5,12 @@ import os
 app = FastAPI()
 
 
-UPLOAD_DIR = "file/rename"
-user_dir = os.path.expanduser("~")
+UPLOAD_DIR = "/home/username/git-project/rename"
 
 @app.post("/upload/image/")
 async def upload_image(file: UploadFile = File(...)):
     
-    file_path = os.path.join(user_dir, UPLOAD_DIR, file.filename)
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
 
     contents = await file.read()
     with open(file_path, "wb") as f:
@@ -22,7 +21,7 @@ async def upload_image(file: UploadFile = File(...)):
 
 @app.post("/upload/video/")
 async def upload_video(file: UploadFile = File(...)):
-    file_path = os.path.join(user_dir, UPLOAD_DIR, file.filename)
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
     contents = await file.read()
     with open(file_path, "wb") as f:
         f.write(contents)
@@ -31,7 +30,7 @@ async def upload_video(file: UploadFile = File(...)):
 
 @app.post("/upload/text/")
 async def upload_text(file: UploadFile = File(...)):
-    file_path = os.path.join(user_dir, UPLOAD_DIR, file.filename)
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
     
     contents = await file.read()
     with open(file_path, "wb") as f:
