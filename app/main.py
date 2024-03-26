@@ -5,7 +5,7 @@ import os
 app = FastAPI()
 
 
-UPLOAD_DIR = "/home/username/git-project/file/rename"
+UPLOAD_DIR = "/home/username/file/rename"
 
 @app.post("/upload/image/")
 async def upload_image(file: UploadFile = File(...)):
